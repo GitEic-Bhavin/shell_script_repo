@@ -1,0 +1,78 @@
+﻿Return Codes and Exit Status
+
+Every command returns an exit status
+Range from 0 to 255
+0 = success
+Other than 0 = error conditions
+Use for error checking
+Use man or info to find meaning of exit status
+
+$? -- contains the return code of the previously executed command.
+
+Host=”google.com
+ping -c 1 $Host
+
+if [ “$?” -eq “0” ]
+then
+  echo “$Host reachable.”
+else
+  echo “$host unreachable.”
+fi
+
+Host=”google.com”
+ping -c 1 $Host
+
+if [ “$?” -ne “0” ]
+then
+  echo “$Host unreachable.”
+fi
+
+Host=”google.com”
+ping -c 1 $Host
+RETURN_CODE=$?
+
+If [ “$RETURN_CODE” -ne “0” ]
+then
+  echo “$Host unreachable”
+fi
+
+
+&& AND 
+Check for both condition should True then return True and return OutPut.
+
+|| OR
+Check for any one of condition should True then return OutPut 
+
+#! /bin/bash
+Host=”google.com”
+ping -c 1 $Host && echo “$Host reachable.”
+
+The Semicolon ;
+If you want to perform multiple command in a single line then use “;”
+
+cp test.txt /tmp/bak ; cp test.txt /tmp
+
+# Same As:
+cp test.txt /tmp/bak/
+cp test.txt /tmp
+
+
+Exit Command
+Explicitly define the return code
+
+exit 0
+exit 1
+exit 2
+exit 255
+
+#!/bin/bash
+Host=”google.com”
+ping -c 1 $Host
+
+if [ “$?” -ne “0” ]
+then
+  echo “$Host unreachable.”
+  exit 1
+fi
+exit 0
+

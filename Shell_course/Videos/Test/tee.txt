@@ -1,0 +1,5 @@
+48: command not found
+/bin/sh: 1: /home/einfochips/Music/Shell_course/Videos/Test/Backup.sh: not found
+No input provided. Exiting.
+tar: Cowardly refusing to create an empty archive
+Try 'tar --help' or 'tar --usage' for more information.

@@ -1,0 +1,117 @@
+﻿Functions
+
+Once  you created functions you can use it many times in script.
+
+Creating a function
+There are 2 ways to create a functions
+
+1. write key-word “function” then write functiuon_name
+
+function function_name() {
+  # Code goes here.
+}
+
+2. Do not write key-word “function”
+
+function_name() {
+  # Code goes here.
+}
+
+Calling a functions
+#!/bin/bash
+function hello() {
+  echo “Hello!”
+}
+hello  -- here we calling function by function name is “hello”
+
+Function can call other functions
+#!/bin/bash
+function hello() {
+  echo “Hello!”
+  now   -- now is a other function is called in hello function.
+}
+
+This will print Hello! 
+                       It’s 2024-07-21 IST 
+
+function now() {
+  echo “It’s $(date +%r)”
+}
+hello
+
+
+
+
+
+#!/bin/bash
+
+function hello() {
+    echo "Hello! $1"
+}
+hello json
+
+# $1 is passing our argument in functions
+# hello json -- calling function hello and passing arg "json" in $1
+
+Passing list of arg using @
+
+#!/bin/bash
+function hello() {
+  for NAME in $@
+do
+    echo “Hello $NAME”
+done
+}
+
+hello jason dan ryan
+# Using $@ we can pass all list of arg like hello jason dan ryan
+
+# OutPut:-
+# “Hello jason”
+# “Hello dan”
+# “Hello ryan”
+
+Variable Scope
+1. Global Variable
+Define a variable before functions is called global variable.
+
+Var=1
+my_function() {
+  code
+}
+
+2. Local Variable
+Can accessed within the function only.
+Create using keyword “local”
+  local var1=12
+Only function can have local variable.
+Best practice to keep variable local in functions
+
+
+function backup_file() {
+  if [ -f $1 ]
+  then
+    BACK=”/tmp/$(baseneme ${1}).$(date +%F).$$”
+    echo “Backing up $1 to ${BACK}”
+    cp $1 $BACK
+  fi
+
+backup_file /etc/hosts
+if [ $? -eq 0 ]
+then
+  echo “Backup succeeded!”
+  fi
+}
+
+
+backu_file /etc/hosts
+
+# Make a decision based on the exit status.
+If [ $? -eq 0 ]
+then
+  echo “Backup succeeded!”
+else
+  echo “Backup failed!”
+  # About the script and return a non-zero exit status.
+  exit 1
+fi

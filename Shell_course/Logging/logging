@@ -1,0 +1,39 @@
+﻿Logging
+
+Logs are for Who did it, what happens , when happens, where this was occured and why happens.
+
+Syslog
+The Linux Os System uses the syslog std for message logging.
+This allows programs and applications to generate msg that can be captured, processed, stored by system logger.
+
+This is used to categorized the messages.
+Each msg is labeled with a facility code anda serverity level.
+
+Facility used for what type of program or system msg originated from.
+Ex. msg labeled with the kern facility originated from Linux kernal.
+Msg labeled with the mail facility come from applications involved in handling mail.
+
+Facility ranging from local0 to local7
+emergency, alert, critical, error, warning, notice, info and debug.
+The most severe msg is emergency msg.
+The least severe msg is debugging msg.
+
+Logging with logger
+logger command generates syslog msg.
+
+logger -p local0.info “Message”  --  My msg is  “Mesage” is send to Facility local0 with priority info like label. Facility like notebook where msg “Message” will store.
+
+-p  --  for Interacting to logger deamon to write a message with local0.info.
+
+To tag a msg “Message”   to quickly identify or find your Message by tag
+logger -t myscript -p local0.info “Message”
+
+To inclused the Proccess ID – PID
+logger -i -t myscript -p local0.info “Message”
+
+
+This messages will availble in /var/log/messages or /var/log/syslog
+
+If you want to display log msg instead of sending in logs file use “-s”
+
+logger  -s  -p  local0.info “Messages”

@@ -1,0 +1,136 @@
+﻿Debugging shell script
+
+-x = Prints commands as they execute
+This debugging also called an x-trace, tracing or print debugging.
+
+#!/bin/bash -x
+set -x  line....  this will start a tracing/debugging for that line where you write set -x.
+  set +x to stop debugging
+
+This debugging will show only value. Ex. Test_Var= “test” and echo “$Test_Var”
+This will show only value like,
+
+Test_Var=test
+echo test 
+
+#!/bin/bash -x
+
+Test_Var="test"
+echo "$Test_Var"
+
+# OutPut:-
+# + Test_Var=test
+# + echo test
+# test
+
+
+#!/bin/bash
+
+Test_Var="test"
+set -x
+echo $Test_Var
+set +x
+hostname
+
+# OutPUt:-
+# + echo test
+# test
+# + set +x
+# AHMLPT2650
+
+
+
+
+
+
+Built in Debugging Help
+
+-e = Exit on error.
+If your script has a error in line durinig execute.
+From that line you will exited from script.
+#!/bin.bash -ex
+
+#!/bin/bash -e
+File_Name=”/not/here”
+ls $File_Name
+echo $File_Name
+
+If we use -x with -e #!/bin/bash -ex it will display output
+#!/bin/bash -ex
+File_Name="/not/here"
+ls $File_Name
+echo $File_Name
+
+# OutPut:-
+# + File_Name=/not/here
+# + ls /not/here
+# ls: cannot access '/not/here': No such file or directory
+
+-v = Prints shell input lines as they are read.
+Can be combined with other options.
+
+-v will just read all line and print it.
+-v will not look for which line is started debugging like -x.
+
+#!/bin/bash -v
+Test_Var="test"
+echo "$Test_Var"
+
+# OutPut:-
+#!/bin/bash -v
+# Test_Var="test"
+# echo "$Test_Var"
+# test
+
+Lets take -x with -v
+#!/bin/bash -vx
+Test_Var="test"
+echo "$Test_Var"
+
+# OutPut:-
+#!/bin/bash -vx
+# Test_Var="test"
+# + Test_Var=test
+# echo "$Test_Var"
+# + echo test
+# test
+
+Manual Debugging
+You can create your own debugging code using DEBUG.
+DEBUG=true
+DEBUG=false
+
+#!/bin/bash
+
+DEBUG=true
+
+if $DEBUG
+then
+  echo "Debug mode ON."
+else
+  echo "Debug mode OFF."
+fi
+
+#!/bin/bash
+DEBUG=true
+$DEBUG && echo “Debug mode ON.”
+
+#!/bin/bash
+DEBUG=false
+$DEBUG || echo “Debug mode OFF.”
+
+DEBUG ls – ls command will executed
+
+#!/bin/bash 
+
+debug () {
+    echo "Executing: $@"
+    $@
+}
+
+debug ls
+echo
+echo
+debug ls -ltr
+
+

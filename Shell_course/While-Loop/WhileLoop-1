@@ -1,0 +1,78 @@
+﻿While Loop Format
+
+while loop is a loop that repeats a series of commands for as long as a given condition is true. 
+
+while [ condition ]
+do
+      “your commads or steps”
+done
+
+index=1
+while [ $index -lt 6 ]
+do
+  echo “Creating project-${index}”
+  mkdir ${index}
+    ((index++))
+done
+
+Example 2
+while [ “$CORRECT” != “y” ]
+do
+    read -p “Enter your name: ” NAME
+    read -p “Is $”{NAME} correct ? ” CORRECT
+done
+
+Example 3
+# This will print if google is down or not be able to ping google.
+# If google is up or be able to ping google it will contiruously print "google stpp up...." at sleep 5 iterations.
+
+
+while ping -c1 google.com > /dev/null
+do
+  echo “google still up....”
+  sleep 5
+done
+
+echo google down, continuing.
+
+
+
+
+
+
+
+While Loop Part 2
+
+Reading a file , line by line
+
+Line_Num=1
+while read Line
+do
+  echo ${Line_Num}: ${Line}
+  ((Line_Num++))
+done < /etc/fstab
+
+Using Grep in while loop
+
+Fs_Num=1
+grep xfs /etc/fstab | while read FS MP REST
+do
+  echo ${Fs_Num} file system: ${FS}  
+  echo ${Fs_Num} mount point: ${MP} 
+
+# FS= First filed file system, MP= Second field Mount Point, REST= remain line
+
+  ((Fs_Num++))
+done
+
+Case Statement using while loop
+
+while true
+do
+  read -p 1: show disk usage. 2: show uptime. CHOICE
+  case $CHOICE in
+    1) df -h;;
+    2) uptime;;
+    *) break;;
+  esac
+done

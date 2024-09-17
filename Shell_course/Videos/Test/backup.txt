@@ -1,0 +1,6 @@
+tar: Cowardly refusing to create an empty archive
+Try 'tar --help' or 'tar --usage' for more information.
+48: command not found
+No input provided. Exiting.
+/bin/sh: 1: /home/einfochips/Music/Shell_course/Videos/Test/Backup.sh: not found
+First Run Service of mysql
